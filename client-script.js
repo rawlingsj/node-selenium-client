@@ -5,13 +5,23 @@ var webdriver = require('selenium-webdriver'),
     By = require('selenium-webdriver').By,
     until = require('selenium-webdriver').until;
 
+var chromeCapabilities = webdriver.Capabilities.chrome();
+var chromeOptions = {
+    'args': ['--no-sandbox']
+};
+
+chromeCapabilities.set('chromeOptions', chromeOptions);
+
 var driver = new webdriver.Builder()
                 .forBrowser('chrome')
+                .withCapabilities(chromeCapabilities)
                 .usingServer('http://' + host + ':' + port + '/wd/hub')
                 .build();
 
 driver.get('http://www.google.com');
-driver.findElement(webdriver.By.name('q')).sendKeys('webdriver');
-driver.findElement(webdriver.By.name('btnG')).click();
-driver.wait(until.titleIs('webdriver - Google Search'), 1000);
+
+driver.getTitle().then(function (title) {
+    console.log(title);
+});
+
 driver.quit();
