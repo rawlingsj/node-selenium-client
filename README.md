@@ -11,7 +11,7 @@ Docker client to run selenium JS scripts against a running selenium/standalone-c
 or   
 
 ```
-docker run -d -P --name chrome selenium/hub:2.45.0
+docker run -d -P --name selenium-hub selenium/hub:2.45.0
 docker run  --privileged -d -P --name chrome --link selenium-hub:hub selenium/node-chrome-debug:2.45.0`
 ```
 
