@@ -6,13 +6,13 @@ Docker client to run selenium JS scripts against a running selenium/standalone-c
 
 ### 1. First start an instance of standalone-chrome or a chrome node with a hub   
 
-`docker run -d -P --name selenium-hub selenium/hub:2.45.0`   
+`docker run -d -P --name selenium-hub selenium/standalone-chrome:2.45.0`
 
 or   
 
 ```
 docker run -d -P --name selenium-hub selenium/hub:2.45.0
-docker run  --privileged -d -P --name chrome --link selenium-hub:hub selenium/node-chrome-debug:2.45.0`
+docker run  --privileged -d -P --name chrome --link selenium-hub:hub selenium/node-chrome-debug:2.45.0
 ```
 
 If you use this debug image you can connect to the browser using vnc, on a Mac you can do this by entering `vnc://[cid for node-chrome-debug container]:5900`   
